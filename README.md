@@ -22,35 +22,45 @@ This repository contains the learning materials and implementations from the **H
     │       │   └── examples.md           # CLI and Python import usage examples
     │       └── assets/                   # Skill templates and assets
     │           └── validation-template.txt
-    └── 2-mcp/                    # Unit 2: The Model Context Protocol (MCP)
+    ├── 2-mcp/                    # Unit 2: The Model Context Protocol (MCP)
+    │   ├── app.py                # Gradio Blocks MCP text processor server
+    │   ├── requirements.txt      # Python dependencies
+    │   └── .gitkeep              # Keep directory placeholder
+    └── 3-plugins/                # Unit 3: Plugins
+        └── text-processor-plugin/# Text Processor plugin bundle
+            ├── .claude-plugin/
+            │   └── plugin.json   # Claude Code manifest
+            ├── .codex-plugin/
+            │   └── plugin.json   # Codex manifest
+            ├── .mcp.json         # Shared Stdio MCP server configuration
+            ├── README.md         # Plugin documentation
+            └── skills/           # Curated agent skills
+                ├── analyze-text/
+                │   └── SKILL.md
+                ├── extract-keywords/
+                │   └── SKILL.md
+                └── check-reading-level/
+                    └── SKILL.md
 ```
 
-## 🚀 Unit 1 Setup & Usage
+## 🚀 Setup & Usage
 
 ### Prerequisites
-Ensure Python 3.8+ is installed.
+Ensure Python 3.11+ is installed.
 
 ```bash
 # Create virtual environment and install dependencies
-python3 -m venv .venv
+python3.11 -m venv .venv
 source .venv/bin/activate
-pip install -r context-course/1-skills/hf-dataset-validation/requirements.txt
+pip install -r context-course/1-skills/hf-dataset-validation/requirements.txt -r context-course/2-mcp/requirements.txt
 ```
 
-### Validation Examples
+### Run MCP Local Server
+```bash
+export no_proxy=localhost,127.0.0.1
+export NO_PROXY=localhost,127.0.0.1
+.venv/bin/python context-course/2-mcp/app.py
+```
 
-* **Generate JSON validation report:**
-  ```bash
-  python context-course/1-skills/hf-dataset-validation/scripts/validate_dataset.py test_data/sample.csv
-  ```
-
-* **Generate human-readable text report:**
-  ```bash
-  python context-course/1-skills/hf-dataset-validation/scripts/generate_report.py test_data/sample.csv
-  ```
-
----
-
-## 🤖 Agent Integration
-
-Symlink the `context-course/1-skills/hf-dataset-validation/` directory into your agent's local or global skills directory (e.g. `.claude/skills/`, `.agents/skills/`, or `.opencode/skills/`) for automatic skill discovery.
+### Validate Unit 3 Plugin Structure
+Verify all manifests, skills, and configuration files exist under `context-course/3-plugins/text-processor-plugin`.
