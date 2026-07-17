@@ -26,21 +26,38 @@ This repository contains the learning materials and implementations from the **H
     │   ├── app.py                # Gradio Blocks MCP text processor server
     │   ├── requirements.txt      # Python dependencies
     │   └── .gitkeep              # Keep directory placeholder
-    └── 3-plugins/                # Unit 3: Plugins
-        └── text-processor-plugin/# Text Processor plugin bundle
-            ├── .claude-plugin/
-            │   └── plugin.json   # Claude Code manifest
-            ├── .codex-plugin/
-            │   └── plugin.json   # Codex manifest
-            ├── .mcp.json         # Shared Stdio MCP server configuration
-            ├── README.md         # Plugin documentation
-            └── skills/           # Curated agent skills
-                ├── analyze-text/
-                │   └── SKILL.md
-                ├── extract-keywords/
-                │   └── SKILL.md
-                └── check-reading-level/
-                    └── SKILL.md
+    ├── 3-plugins/                # Unit 3: Plugins
+    │   └── text-processor-plugin/# Text Processor plugin bundle
+    │       ├── .claude-plugin/
+    │       │   └── plugin.json   # Claude Code manifest
+    │       ├── .codex-plugin/
+    │       │   └── plugin.json   # Codex manifest
+    │       ├── .mcp.json         # Shared Stdio MCP server configuration
+    │       ├── README.md         # Plugin documentation
+    │       └── skills/           # Curated agent skills
+    │           ├── analyze-text/
+    │           │   └── SKILL.md
+    │           ├── extract-keywords/
+    │           │   └── SKILL.md
+    │           └── check-reading-level/
+    │               └── SKILL.md
+    └── 4-subagents/              # Unit 4: Subagents
+        └── code-quality-pipeline/# Multi-agent research -> implement -> review pipeline
+            ├── .claude/
+            │   ├── agents/       # Claude custom agent definitions
+            │   │   ├── researcher.md
+            │   │   ├── implementer.md
+            │   │   ├── security-reviewer.md
+            │   │   └── performance-reviewer.md
+            │   └── CLAUDE.md     # Claude-scoped project policies
+            ├── .codex/
+            │   └── agents/       # Codex custom agent definitions (TOML)
+            │       ├── researcher.toml
+            │       ├── implementer.toml
+            │       ├── security-reviewer.toml
+            │       └── performance-reviewer.toml
+            ├── AGENTS.md         # Shared agent guidelines
+            └── main.py           # Entry point mock script for auth system
 ```
 
 ## 🚀 Setup & Usage
@@ -62,5 +79,5 @@ export NO_PROXY=localhost,127.0.0.1
 .venv/bin/python context-course/2-mcp/app.py
 ```
 
-### Validate Unit 3 Plugin Structure
-Verify all manifests, skills, and configuration files exist under `context-course/3-plugins/text-processor-plugin`.
+### Validate Unit 4 Pipeline
+Explore subagent definitions and guidelines under `context-course/4-subagents/code-quality-pipeline/`.
