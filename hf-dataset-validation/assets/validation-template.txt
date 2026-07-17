@@ -1,0 +1,10 @@
+DATASET VALIDATION REPORT TEMPLATE
+===================================
+File: {filepath}
+Format: {format}
+Rows: {rows}
+Columns: {columns}
+Missing Values: {missing_values}
+Warnings: {warnings}
+Errors: {errors}
+===================================
