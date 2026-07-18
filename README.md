@@ -41,23 +41,37 @@ This repository contains the learning materials and implementations from the **H
     │           │   └── SKILL.md
     │           └── check-reading-level/
     │               └── SKILL.md
-    └── 4-subagents/              # Unit 4: Subagents
-        └── code-quality-pipeline/# Multi-agent research -> implement -> review pipeline
+    ├── 4-subagents/              # Unit 4: Subagents
+    │   └── code-quality-pipeline/# Multi-agent research -> implement -> review pipeline
+    │       ├── .claude/
+    │       │   ├── agents/       # Claude custom agent definitions
+    │       │   │   ├── researcher.md
+    │       │   │   ├── implementer.md
+    │       │   │   ├── security-reviewer.md
+    │       │   │   └── performance-reviewer.md
+    │       │   └── CLAUDE.md     # Claude-scoped project policies
+    │       ├── .codex/
+    │       │   └── agents/       # Codex custom agent definitions (TOML)
+    │       │       ├── researcher.toml
+    │       │       ├── implementer.toml
+    │       │       ├── security-reviewer.toml
+    │       │       └── performance-reviewer.toml
+    │       ├── AGENTS.md         # Shared agent guidelines
+    │       └── main.py           # Entry point mock script for auth system
+    └── 5-hooks/                  # Unit 5: Hooks
+        └── agent-activity-dashboard/# Cross-platform Agent Activity Dashboard
+            ├── app.py            # Gradio + FastAPI server
+            ├── requirements.txt  # Python requirements
             ├── .claude/
-            │   ├── agents/       # Claude custom agent definitions
-            │   │   ├── researcher.md
-            │   │   ├── implementer.md
-            │   │   ├── security-reviewer.md
-            │   │   └── performance-reviewer.md
-            │   └── CLAUDE.md     # Claude-scoped project policies
+            │   └── settings.json # Claude hooks setting (with guardrail)
             ├── .codex/
-            │   └── agents/       # Codex custom agent definitions (TOML)
-            │       ├── researcher.toml
-            │       ├── implementer.toml
-            │       ├── security-reviewer.toml
-            │       └── performance-reviewer.toml
-            ├── AGENTS.md         # Shared agent guidelines
-            └── main.py           # Entry point mock script for auth system
+            │   └── hooks.json    # Codex hooks settings (curl/jq pipes)
+            ├── .opencode/
+            │   └── plugins/
+            │       └── dashboard.ts # OpenCode plugin hook
+            └── .pi/
+                └── extensions/
+                    └── dashboard.ts # Pi extension hook
 ```
 
 ## 🚀 Setup & Usage
@@ -69,7 +83,7 @@ Ensure Python 3.11+ is installed.
 # Create virtual environment and install dependencies
 python3.11 -m venv .venv
 source .venv/bin/activate
-pip install -r context-course/1-skills/hf-dataset-validation/requirements.txt -r context-course/2-mcp/requirements.txt
+pip install -r context-course/1-skills/hf-dataset-validation/requirements.txt -r context-course/2-mcp/requirements.txt -r context-course/5-hooks/agent-activity-dashboard/requirements.txt
 ```
 
 ### Run MCP Local Server
@@ -79,5 +93,10 @@ export NO_PROXY=localhost,127.0.0.1
 .venv/bin/python context-course/2-mcp/app.py
 ```
 
-### Validate Unit 4 Pipeline
-Explore subagent definitions and guidelines under `context-course/4-subagents/code-quality-pipeline/`.
+### Run Activity Dashboard
+```bash
+export no_proxy=localhost,127.0.0.1
+export NO_PROXY=localhost,127.0.0.1
+.venv/bin/python context-course/5-hooks/agent-activity-dashboard/app.py
+```
+Check the live dashboard in your browser at `http://localhost:8000`.
